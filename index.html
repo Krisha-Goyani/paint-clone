@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Paint</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="canvas"></canvas>
+        <div class="toolbar">
+            <div class="tool-section">
+                <div class="tool-label">Fill</div>
+                <div class="permanent-colors">
+                    <div class="color-option" style="background-color: #000000" data-color="#000000"></div>
+                    <div class="color-option" style="background-color: #FFFFFF" data-color="#FFFFFF"></div>
+                </div>
+                <div class="tool-label">Recent</div>
+                <div class="color-options" id="fill-colors">
+                    <div class="color-option selected" style="background-color: #800080" data-color="#800080"></div>
+                    <div class="color-option" style="background-color: #FFA500" data-color="#FFA500"></div>
+                    <div class="color-option" style="background-color: #8A2BE2" data-color="#8A2BE2"></div>
+                    <div class="color-option" style="background-color: #FF0000" data-color="#FF0000"></div>
+                    <div class="color-option" style="background-color: #008000" data-color="#008000"></div>
+                </div>
+                <div class="color-picker" id="fill-color-picker">
+                    <div class="color-option" style="background-color: #00BFFF" data-color="#00BFFF"></div>
+                    <div class="color-picker-popup" id="fill-picker-popup">
+                        <canvas id="fill-color-canvas" width="200" height="100"></canvas>
+                        <input type="color" id="fill-color-input" value="#000000">
+                        <div class="color-value-inputs">
+                            <input type="text" id="fill-r" placeholder="R" value="0">
+                            <input type="text" id="fill-g" placeholder="G" value="0">
+                            <input type="text" id="fill-b" placeholder="B" value="0">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="fill-apply">Apply</button>
+            </div>
+            <div class="tool-section">
+                <div class="tool-label">Brush</div>
+                <div class="permanent-colors">
+                    <div class="color-option" style="background-color: #000000" data-color="#000000"></div>
+                    <div class="color-option" style="background-color: #FFFFFF" data-color="#FFFFFF"></div>
+                </div>
+                <div class="tool-label">Recent</div>
+                <div class="color-options" id="stroke-colors">
+                    <div class="color-option selected" style="background-color: #b679b6" data-color="#b679b6"></div>
+                    <div class="color-option" style="background-color: #7fe26b" data-color="#7fe26b"></div>
+                    <div class="color-option" style="background-color: #f1353e" data-color="#f1353e"></div>
+                    <div class="color-option" style="background-color: #2441e7" data-color="#2441e7"></div>
+                    <div class="color-option" style="background-color: #0af788" data-color="#0af788"></div>
+                </div>
+                <div class="color-picker" id="stroke-color-picker">
+                    <div class="color-option" style="background-color: #00BFFF" data-color="#00BFFF"></div>
+                    <div class="color-picker-popup" id="stroke-picker-popup">
+                        <canvas id="stroke-color-canvas" width="200" height="100"></canvas>
+                        <input type="color" id="stroke-color-input" value="#000000">
+                        <div class="color-value-inputs">
+                            <input type="text" id="stroke-r" placeholder="R" value="0">
+                            <input type="text" id="stroke-g" placeholder="G" value="0">
+                            <input type="text" id="stroke-b" placeholder="B" value="0">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="stroke-apply">Apply</button>
+                <button class="btn btn-warning" id="clear-canvas">Clear</button>
+                <div class="brush-size">
+                    <input type="range" id="brush-size" min="1" max="100" value="10">
+                    <span id="brush-size-value">10 px</span>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <div class="action-btn" id="eraser" title="Eraser">
+                    <i class="fas fa-eraser"></i>
+                </div>
+                <div class="action-btn" id="undo" title="Undo">↩</div>
+                <div class="action-btn" id="redo" title="Redo">↪</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100%;
+}
+
+canvas {
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: crosshair;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    background-color: rgb(26, 165, 175);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+} */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* padding: 20px; */
+    height: 100%;
+    position: relative;
+}
+
+canvas {
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: crosshair;
+    flex: 1;
+    /* margin-bottom: 20px; */
+}
+
+.toolbar {
+    position: fixed;
+    bottom: 20px;  /* Changed from top to bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.tool-section {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+    background-color: rgb(26, 165, 175);
+    border-radius: 8px;
+}
+
+.tool-label {
+    font-weight: bold;
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.color-options {
+    display: flex;
+    margin-right: 10px;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.color-option {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.color-option-picker {
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.color-option.selected {
+    border-color: white;
+}
+
+.color-picker {
+    position: relative;
+}
+
+.color-picker-popup {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    display: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+/* Add cursor pointer to color picker elements */
+.color-picker-popup canvas,
+.color-picker-popup input[type="color"],
+.color-picker-popup input[type="text"] {
+    cursor: pointer;
+}
+
+/* Make the color canvas specifically have a crosshair cursor */
+#fill-color-canvas,
+#stroke-color-canvas {
+    cursor: pointer;
+}
+
+.color-picker-popup.active {
+    display: block;
+}
+
+.color-value-inputs {
+    display: flex;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+.color-value-inputs input {
+    width: 50px;
+    text-align: center;
+}
+
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.btn-primary {
+    background-color: #0d68fa;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #fbbc05;
+    color: black;
+}
+
+.brush-size {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.brush-size span {
+    color: white;
+    margin-left: 5px;
+    min-width: 50px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    margin-right: 20px;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #b81be7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+}
+
+.permanent-colors {
+    display: flex;
+    margin-right: 10px;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.color-picker .color-option {
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 768px) {
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .tool-section {
+        margin-right: 0;
+        justify-content: center;
+    }
+    
+    .brush-size {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+    }
+    
+    .brush-size input[type="range"] {
+        width: 50%;
+    }
+    
+    .action-buttons {
+        justify-content: center;
+    }
+    
+    .color-picker-popup {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .color-option, .color-option-picker {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
+    .tool-label {
+        font-size: 14px;
+    }
+    
+    .action-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+} 
